@@ -7,6 +7,48 @@ title: Multiple Parson's Problems on One Page
 ---
 # Parsons Practice
 
+##Input Validation
+Create code which will ensure the user input is exactly 8 characters long.
+
+<div id="pp-input-validation-sortableTrash" class="sortable-code"></div> 
+<div id="pp-input-validation-sortable" class="sortable-code"></div> 
+<div style="clear:both;"></div> 
+<p> 
+    <input id="pp-input-validation-feedbackLink" value="Get Feedback" type="button" /> 
+    <input id="pp-input-validation-newInstanceLink" value="Reset Problem" type="button" /> 
+</p> 
+<script type="text/javascript"> 
+(function(){
+  var initial = "Dim userInput As String = &quot;&quot;\n" +
+    "Do\n" +
+    "userInput = InputBox (&quot;Please enter an 8-character word.&quot;)\n" +
+    "If Len(userInput)&lt;&gt;8 Then\n" +
+    "userInput = InputBox (“Sorry, your word must be exactly 8 characters long. Please try again.”)\n" +
+    "End If\n" +
+    "Loop Until Len(userInput)=8";
+  var parsonsPuzzle = new ParsonsWidget({
+    "sortableId": "pp-input-validation-sortable",
+    "max_wrong_lines": 10,
+    "grader": ParsonsWidget._graders.LineBasedGrader,
+    "exec_limit": 2500,
+    "can_indent": true,
+    "x_indent": 50,
+    "lang": "en",
+    "show_feedback": true
+  });
+  parsonsPuzzle.init(initial);
+  parsonsPuzzle.shuffleLines();
+  $("#pp-input-validation-newInstanceLink").click(function(event){ 
+      event.preventDefault(); 
+      parsonsPuzzle.shuffleLines(); 
+  }); 
+  $("#pp-input-validation-feedbackLink").click(function(event){ 
+      event.preventDefault(); 
+      parsonsPuzzle.getFeedback(); 
+  }); 
+})(); 
+</script>
+
 ## Parsons 1 (Line Based Grader)
 Re-arrange the blocks below so they print out "Hello World!"
 
